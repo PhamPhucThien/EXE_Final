@@ -29,6 +29,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion flutter.compileSdkVersion
+    //ndkVersion this.ndkVersion
     ndkVersion "25.1.8937393"
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

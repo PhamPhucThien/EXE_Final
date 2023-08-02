@@ -34,23 +34,23 @@ class home_screen extends StatelessWidget {
                       color: Color(0xFF3E4D4B), fontWeight: FontWeight.bold),
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: courses
-                      .map(
-                        (course) => Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: CourseCard(
-                            title: course.title,
-                            iconSrc: course.iconSrc,
-                            color: course.color,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: courses
+              //         .map(
+              //           (course) => Padding(
+              //             padding: const EdgeInsets.only(left: 20),
+              //             child: CourseCard(
+              //               title: course.title,
+              //               iconSrc: course.iconSrc,
+              //               color: course.color,
+              //             ),
+              //           ),
+              //         )
+              //         .toList(),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Text(
