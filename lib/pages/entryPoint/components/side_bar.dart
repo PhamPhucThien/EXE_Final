@@ -13,6 +13,8 @@ import '../utils/rive_utils.dart';
 import 'info_card.dart';
 import 'side_menu.dart';
 import '../../wallet/wallet_screen.dart';
+import 'package:project/pages/auth/login_page.dart';
+import 'package:project/service/auth_service.dart';
 
 class SideBar extends StatefulWidget {
   final String userName;
@@ -30,6 +32,7 @@ class SideBar extends StatefulWidget {
 
 class _SideBarState extends State<SideBar> {
   Menu selectedSideMenu = sidebarMenus.first;
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -73,13 +76,21 @@ class _SideBarState extends State<SideBar> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => EntryPoint(
+                                        userName: widget.userName,
+                                        email: widget.email,
+                                        currentScreen: HomePage(),
+                                      )),
                             );
                           } else if (menu.title == "Tìm Kiếm") {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SearchPage()),
+                                  builder: (context) => EntryPoint(
+                                        userName: widget.userName,
+                                        email: widget.email,
+                                        currentScreen: SearchPage(),
+                                      )),
                             );
                           } else if (menu.title == "Trang Chủ") {
                             Navigator.push(
@@ -168,7 +179,51 @@ class _SideBarState extends State<SideBar> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => EntryPoint(
+                                        userName: widget.userName,
+                                        email: widget.email,
+                                        currentScreen: HomePage(),
+                                      )),
+                            );
+                          } else if (menu.title == "Thoát") {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Logout"),
+                                  content: const Text(
+                                      "Are you sure you want to logout?"),
+                                  actions: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      icon: const Icon(
+                                        Icons.cancel,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () async {
+                                        await authService.signOut();
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage(),
+                                          ),
+                                          (route) => false,
+                                        );
+                                      },
+                                      icon: const Icon(
+                                        Icons.done,
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
                           } else {
                             RiveUtils.chnageSMIBoolState(menu.rive.status!);

@@ -76,6 +76,13 @@ List<Menu> sidebarMenus2 = [
         artboard: "BELL",
         stateMachineName: "BELL_Interactivity"),
   ),
+  Menu(
+    title: "Thoát",
+    rive: RiveModel(
+        src: "assets/RiveAssets/icons.riv",
+        artboard: "BELL",
+        stateMachineName: "BELL_Interactivity"),
+  )
 ];
 
 List<Menu> bottomNavItems = [
